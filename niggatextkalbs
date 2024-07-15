@@ -1,0 +1,50 @@
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
+import SignIn from "../comp/Login/login";
+import SignUp from "../comp/Signup/signup";
+import Home from "../comp/Home/home";
+import Landing from "../comp/Landing/landing"; // Corrected import
+
+const screens = {
+    SignInScreen: {
+        screen: SignIn,
+    },
+    SignUpScreen: {
+        screen: SignUp,
+    },
+    HomeScreen: {
+        screen: Home,
+    },
+    LandingScreen: {
+        screen: Landing, // Corrected component name
+    }
+}
+
+return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+
+  
+const homeStack = createStackNavigator(
+    screens,
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: "#009387",
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                textAlign: 'center',
+                fontWeight: 'bold',
+            },
+        },
+        initialRouteName: 'LandingScreen' // Set initial route
+    }
+);
+
+export default createAppContainer(homeStack);
